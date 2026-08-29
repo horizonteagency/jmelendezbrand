@@ -1,0 +1,110 @@
+media:
+  - name: images
+    label: Imágenes
+    input: assets/media
+    output: /assets/media
+    categories: [image]
+    rename: safe
+  - name: documents
+    label: Documentos
+    input: assets/media
+    output: /assets/media
+    categories: [document]
+    rename: safe
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "Contenido: crear {path}"
+      update: "Contenido: actualizar {path}"
+      delete: "Contenido: eliminar {path}"
+      rename: "Contenido: renombrar {oldPath} -> {newPath}"
+
+content:
+  - name: gestion
+    label: Gestión del sitio
+    type: group
+    items:
+      - name: site
+        label: Datos generales
+        type: file
+        path: data/site.json
+        format: json
+        operations:
+          delete: false
+        fields:
+          - { name: brand, label: Marca, type: string, required: true }
+          - { name: domain, label: Dominio, type: string, required: true }
+          - { name: tagline, label: Firma, type: string, required: true }
+          - { name: hero_eyebrow, label: Antetítulo del inicio, type: string }
+          - { name: hero_title, label: Título principal, type: text, required: true }
+          - { name: hero_text, label: Texto principal, type: text, required: true }
+          - { name: primary_cta_label, label: CTA principal - texto, type: string }
+          - { name: primary_cta_url, label: CTA principal - enlace, type: string }
+          - { name: secondary_cta_label, label: CTA secundario - texto, type: string }
+          - { name: secondary_cta_url, label: CTA secundario - enlace, type: string }
+          - { name: about_short, label: Sobre José - resumen, type: text }
+          - { name: instagram_url, label: Instagram, type: string }
+          - { name: linkedin_url, label: LinkedIn, type: string }
+          - { name: youtube_url, label: YouTube, type: string }
+          - { name: behance_url, label: Behance, type: string }
+          - { name: email, label: Email, type: string }
+          - { name: horizonte_url, label: URL Agencia Horizonte, type: string }
+          - { name: newsletter_action, label: URL del formulario/newsletter, type: string, description: "Pega aquí la URL de Systeme.io, MailerLite u otra herramienta cuando la tengas." }
+          - { name: footer_note, label: Texto del footer, type: text }
+
+      - name: projects
+        label: Proyectos
+        type: file
+        path: data/projects.json
+        format: json
+        list: true
+        operations:
+          delete: false
+        fields:
+          - { name: title, label: Nombre del proyecto, type: string, required: true }
+          - { name: category, label: Categoría, type: string, required: true }
+          - { name: year, label: Año, type: string }
+          - { name: summary, label: Resumen, type: text, required: true }
+          - name: image
+            label: Imagen de portada
+            type: image
+            options:
+              media: images
+              rename: safe
+          - { name: behance_url, label: Enlace al proyecto extendido en Behance, type: string }
+          - { name: role, label: Rol / participación, type: string }
+          - { name: published, label: Publicado, type: boolean }
+          - { name: featured, label: Destacado en inicio, type: boolean }
+
+      - name: resources
+        label: Recursos
+        type: file
+        path: data/resources.json
+        format: json
+        list: true
+        operations:
+          delete: false
+        fields:
+          - { name: title, label: Nombre del recurso, type: string, required: true }
+          - { name: type, label: Tipo, type: string }
+          - { name: description, label: Descripción, type: text, required: true }
+          - name: image
+            label: Imagen
+            type: image
+            options:
+              media: images
+              rename: safe
+          - name: url
+            label: Archivo o enlace
+            type: file
+            options:
+              media: documents
+              categories: [document]
+              rename: safe
+          - { name: cta, label: Texto del botón, type: string }
+          - { name: published, label: Publicado, type: boolean }
+          - { name: featured, label: Destacado en inicio, type: boolean }

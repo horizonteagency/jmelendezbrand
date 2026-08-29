@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jmelenedezbrand.com/sitemap.xml
